@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEXCOIN (SXC) - The Original Adult Crypto | Est. 2013</title>
+    <meta name="description" content="The untold story of Sexcoin - the first cryptocurrency built for the adult industry. Born May 28, 2013. The OG that started it all.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ff2d55;
+            --pink-dark: #cc1a40;
+            --pink-glow: rgba(255, 45, 85, 0.3);
+            --purple: #9d4edd;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --card: #12121a;
+            --card-border: #1f1f2e;
+            --text: #ffffff;
+            --text-dim: #8888aa;
+            --gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, var(--pink-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(157, 78, 221, 0.2) 0%, transparent 50%),
+                var(--darker);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(transparent, var(--darker));
+            pointer-events: none;
+        }
+
+        .ticker {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--pink);
+            background: rgba(255, 45, 85, 0.1);
+            border: 1px solid var(--pink);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--pink-glow); }
+            50% { box-shadow: 0 0 20px 5px var(--pink-glow); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero .og-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--gold), #ffaa00);
+            color: #000;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--text-dim);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text), var(--text-dim));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--pink), var(--purple), var(--pink));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--pink);
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(255, 45, 85, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            background: var(--pink);
+            border-radius: 50%;
+            border: 3px solid var(--darker);
+        }
+
+        .timeline-date {
+            font-family: 'Space Mono', monospace;
+            color: var(--pink);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            color: var(--text-dim);
+        }
+
+        .timeline-content a {
+            color: var(--pink);
+            text-decoration: none;
+        }
+
+        .timeline-content a:hover {
+            text-decoration: underline;
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            background: rgba(255, 45, 85, 0.1);
+            color: var(--pink);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .timeline-tag.green {
+            background: rgba(0, 255, 100, 0.1);
+            color: #00ff64;
+        }
+
+        .timeline-tag.gold {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+        }
+
+        .timeline-tag.red {
+            background: rgba(255, 50, 50, 0.1);
+            color: #ff5050;
+        }
+
+        /* Specs Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .spec-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .spec-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-5px);
+        }
+
+        .spec-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .spec-title {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* Links Section */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .link-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--pink);
+            background: rgba(255, 45, 85, 0.05);
+        }
+
+        .link-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 45, 85, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .link-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .link-info p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(255, 45, 85, 0.1), rgba(157, 78, 221, 0.1));
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+            border: 1px solid var(--card-border);
+        }
+
+        .quote-section blockquote {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .quote-section cite {
+            color: var(--text-dim);
+            font-style: normal;
+        }
+
+        /* Legacy Section */
+        .legacy-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .legacy-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legacy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+        }
+
+        .legacy-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .legacy-card p {
+            color: var(--text-dim);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--text-dim);
+        }
+
+        footer .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-item::before {
+                left: -23px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .stats-row {
+                gap: 2rem;
+            }
+
+            .quote-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="ticker">$SXC</div>
+        <h1>SEXCOIN</h1>
+        <p class="tagline">The first cryptocurrency built for the adult industry. Before Titcoin. Before CumRocket. Before all of them.</p>
+        <div class="og-badge">
+            👑 THE ORIGINAL • EST. MAY 28, 2013
+        </div>
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-value">11+</div>
+                <div class="stat-label">Years Old</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">250M</div>
+                <div class="stat-label">Total Supply</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">$18M</div>
+                <div class="stat-label">Peak Market Cap</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">$0.22</div>
+                <div class="stat-label">All-Time High</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- The Story Section -->
+    <section id="story">
+        <div class="section-header">
+            <h2>📜 The Complete History</h2>
+            <p>From a BitcoinTalk announcement to becoming a legend. This is the untold story of Sexcoin.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">May 28, 2013</div>
+                <div class="timeline-title">🚀 Genesis Block</div>
+                <div class="timeline-content">
+                    Sexcoin launches on BitcoinTalk with a simple pitch: "We are not creating a new coin but a coin for specific use - to buy/sell Adult services and products." First 2 blocks premined for bounties. 500,000 SXC paid to Cryptsy just for listing.
+                    <br><br>
+                    <a href="https://bitcointalk.org/index.php?topic=218158.0" target="_blank">📎 Original BitcoinTalk Announcement →</a>
+                </div>
+                <span class="timeline-tag green">LAUNCH</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">December 9-11, 2013</div>
+                <div class="timeline-title">📈 The First Pump: 7,500% in 3 Days</div>
+                <div class="timeline-content">
+                    Sexcoin explodes. Price increases approximately 7,500% in just 3 days. Cryptsy exchange can't handle the volume. Everything breaks - the website, wallet generator, block explorer. First ATH hits $0.24.
+                    <br><br>
+                    <a href="https://www.reddit.com/r/Sexcoin/comments/1tafz0/the_poor_state_of_sxc/" target="_blank">📎 Reddit Drama Thread →</a>
+                </div>
+                <span class="timeline-tag gold">ATH #1</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">December 20, 2013</div>
+                <div class="timeline-title">💀 "The Poor State of SXC"</div>
+                <div class="timeline-content">
+                    A Reddit post documents the chaos: "Try clicking any of the links on the main Sexcoin website, and tell me where they go. Nowhere! The links are broken, and the information is way out dated." Community calls it "just another thrown together attempt."
+                </div>
+                <span class="timeline-tag red">DRAMA</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">January 2015</div>
+                <div class="timeline-title">📉 Rock Bottom</div>
+                <div class="timeline-content">
+                    Price crashes to all-time low: $0.000114. Development stalls. Original developers seemingly abandon the project. The dark ages begin.
+                </div>
+                <span class="timeline-tag red">CRASH</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2015-2016</div>
+                <div class="timeline-title">🦸 The Savior: Lavajumper</div>
+                <div class="timeline-content">
+                    One developer emerges from the shadows. Known only as "Lavajumper," this anonymous hero takes over development. Builds Android wallet, maintains block explorer, keeps the chain alive through the crypto winter.
+                    <br><br>
+                    <a href="https://github.com/lavajumper" target="_blank">📎 Lavajumper's GitHub →</a>
+                </div>
+                <span class="timeline-tag green">REVIVAL</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">July 2, 2015</div>
+                <div class="timeline-title">😏 "Sexcoin Regains Erection"</div>
+                <div class="timeline-content">
+                    Reddit post titled "Sexcoin (SXC) Regains Erection, Begins Humping Crypto Charts" signals the first signs of life. The community isn't dead yet.
+                    <br><br>
+                    <a href="https://www.reddit.com/r/Sexcoin/comments/3bv8u8/sexcoin_sxc_regains_erection_begins_humping/" target="_blank">📎 The Legendary Post →</a>
+                </div>
+                <span class="timeline-tag">MEME HISTORY</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">December 2017</div>
+                <div class="timeline-title">🚀 The Bull Run</div>
+                <div class="timeline-content">
+                    Crypto bull market lifts all boats. Sexcoin hits $18 MILLION market cap. New ATH: $0.22 on December 31, 2017. ~200 active nodes. Trading on Livecoin and Cryptopia. The Sexcoin Maid store launches - first SXC-only adult toy shop.
+                    <br><br>
+                    <a href="https://medium.com/sexcoin/sexcoin-the-adult-blockchain-2bd1d0ea440c" target="_blank">📎 Official 2017 Recap →</a>
+                </div>
+                <span class="timeline-tag gold">ATH #2</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2018-2019</div>
+                <div class="timeline-title">💎 Building Through the Bear</div>
+                <div class="timeline-content">
+                    While prices crash, development continues. iOS wallet planned. European sales team for adult shops and clubs. Camgirl integration. Miss Banana accepts Sexcoin. The vision: become part of the $97 billion adult industry.
+                </div>
+                <span class="timeline-tag">BUILDING</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">January 2019</div>
+                <div class="timeline-title">⚠️ Cryptopia Hack</div>
+                <div class="timeline-content">
+                    Major exchange Cryptopia gets hacked. Millions lost. One of the last major exchanges listing SXC goes down. Trading volume evaporates.
+                </div>
+                <span class="timeline-tag red">SETBACK</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2020-2024</div>
+                <div class="timeline-title">🧟 The Quiet Years</div>
+                <div class="timeline-content">
+                    Price near zero. Most exchanges delist. But Lavajumper keeps pushing updates. Android wallet still maintained. The chain still runs. 128 million SXC in circulation. The legend sleeps, but doesn't die.
+                </div>
+                <span class="timeline-tag">DORMANT</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">December 2024</div>
+                <div class="timeline-title">📱 Latest Update</div>
+                <div class="timeline-content">
+                    New Android wallet release. BitcoinTalk thread still active. Lavajumper still maintaining. After 11 years, Sexcoin refuses to die.
+                    <br><br>
+                    <a href="https://bitcointalk.org/index.php?topic=1272422.0" target="_blank">📎 Current BitcoinTalk Thread →</a>
+                </div>
+                <span class="timeline-tag green">STILL ALIVE</span>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2025</div>
+                <div class="timeline-title">🔥 The Return?</div>
+                <div class="timeline-content">
+                    Buttcoin running. Dickcoin pumping. Body part memecoins are back. The OG that started it all is ready for its comeback. The legend awakens.
+                </div>
+                <span class="timeline-tag gold">NOW</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section>
+        <div class="quote-section">
+            <blockquote>"Sexcoin is not a new coin. There was no ICO and no initial investments of any kind. Sexcoin has grown steadily having started in 2013 during the first true Altcoin Uprising."</blockquote>
+            <cite>— Sexcoin Team, 2017</cite>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section id="specs">
+        <div class="section-header">
+            <h2>⚙️ Technical Specifications</h2>
+            <p>The original specs from the 2013 launch</p>
+        </div>
+
+        <div class="specs-grid">
+            <div class="spec-card">
+                <div class="spec-icon">⏱️</div>
+                <div class="spec-title">Block Time</div>
+                <div class="spec-value">60 sec</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">💰</div>
+                <div class="spec-title">Total Supply</div>
+                <div class="spec-value">250M</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">⛏️</div>
+                <div class="spec-title">Block Reward</div>
+                <div class="spec-value">100 SXC</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🔄</div>
+                <div class="spec-title">Halving</div>
+                <div class="spec-value">600K blocks</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🔐</div>
+                <div class="spec-title">Algorithm</div>
+                <div class="spec-value">Scrypt</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">✅</div>
+                <div class="spec-title">Confirmations</div>
+                <div class="spec-value">6</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🎰</div>
+                <div class="spec-title">Lucky Blocks</div>
+                <div class="spec-value">x3 or x50</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">📊</div>
+                <div class="spec-title">Circulating</div>
+                <div class="spec-value">~128M</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy Section -->
+    <section id="legacy">
+        <div class="section-header">
+            <h2>👑 The Legacy</h2>
+            <p>Why Sexcoin matters in crypto history</p>
+        </div>
+
+        <div class="legacy-cards">
+            <div class="legacy-card">
+                <h3>🥇 The First</h3>
+                <p>Sexcoin was the FIRST cryptocurrency specifically built for the adult industry. Before Titcoin (2014), before SpankChain (2017), before CumRocket (2021). The OG that started it all.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>💎 No ICO</h3>
+                <p>No presale. No ICO scam. No VC funding. Just a fair launch on BitcoinTalk. Pure crypto from a simpler time.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>🧟 The Survivor</h3>
+                <p>11+ years old. Survived multiple crypto winters. Survived exchange hacks. Survived abandonment. Still running. Most coins from 2013 are dead. Sexcoin refuses to die.</p>
+            </div>
+            <div class="legacy-card">
+                <h3>🦸 Community Saved</h3>
+                <p>When original devs abandoned ship, one anonymous developer (Lavajumper) kept the chain alive for years. A true crypto legend.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section id="links">
+        <div class="section-header">
+            <h2>🔗 The Archives</h2>
+            <p>Primary sources and historical evidence</p>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://bitcointalk.org/index.php?topic=218158.0" target="_blank" class="link-card">
+                <div class="link-icon">📜</div>
+                <div class="link-info">
+                    <h3>Original Announcement</h3>
+                    <p>BitcoinTalk • May 28, 2013</p>
+                </div>
+            </a>
+            <a href="https://bitcointalk.org/index.php?topic=1272422.0" target="_blank" class="link-card">
+                <div class="link-icon">💬</div>
+                <div class="link-info">
+                    <h3>Current BitcoinTalk Thread</h3>
+                    <p>Still active after 11 years</p>
+                </div>
+            </a>
+            <a href="https://www.reddit.com/r/Sexcoin/" target="_blank" class="link-card">
+                <div class="link-icon">🗣️</div>
+                <div class="link-info">
+                    <h3>r/Sexcoin</h3>
+                    <p>Reddit community</p>
+                </div>
+            </a>
+            <a href="https://www.reddit.com/r/Sexcoin/comments/1tafz0/the_poor_state_of_sxc/" target="_blank" class="link-card">
+                <div class="link-icon">😱</div>
+                <div class="link-info">
+                    <h3>"The Poor State of SXC"</h3>
+                    <p>Legendary drama thread • Dec 2013</p>
+                </div>
+            </a>
+            <a href="https://github.com/lavajumper" target="_blank" class="link-card">
+                <div class="link-icon">👨‍💻</div>
+                <div class="link-info">
+                    <h3>Lavajumper's GitHub</h3>
+                    <p>The savior's code</p>
+                </div>
+            </a>
+            <a href="https://github.com/sexcoin-project/sexcoin" target="_blank" class="link-card">
+                <div class="link-icon">💾</div>
+                <div class="link-info">
+                    <h3>Sexcoin Core</h3>
+                    <p>Official GitHub repository</p>
+                </div>
+            </a>
+            <a href="https://medium.com/sexcoin/sexcoin-the-adult-blockchain-2bd1d0ea440c" target="_blank" class="link-card">
+                <div class="link-icon">📝</div>
+                <div class="link-info">
+                    <h3>2017 Official Article</h3>
+                    <p>Peak era documentation</p>
+                </div>
+            </a>
+            <a href="https://www.coinlore.com/coin/sexcoin/historical-data" target="_blank" class="link-card">
+                <div class="link-icon">📊</div>
+                <div class="link-info">
+                    <h3>Historical Price Data</h3>
+                    <p>Complete price history</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Price History Section -->
+    <section id="price">
+        <div class="section-header">
+            <h2>📈 Price History</h2>
+            <p>The journey from pennies to dreams and back</p>
+        </div>
+
+        <div class="specs-grid">
+            <div class="spec-card">
+                <div class="spec-icon">🎬</div>
+                <div class="spec-title">First Price (Dec 2013)</div>
+                <div class="spec-value">$0.0086</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🏔️</div>
+                <div class="spec-title">ATH #1 (Dec 2013)</div>
+                <div class="spec-value">$0.24</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">📉</div>
+                <div class="spec-title">All-Time Low (Jan 2015)</div>
+                <div class="spec-value">$0.000114</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🚀</div>
+                <div class="spec-title">ATH #2 (Dec 2017)</div>
+                <div class="spec-value">$0.22</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">💰</div>
+                <div class="spec-title">Peak Market Cap</div>
+                <div class="spec-value">$18M</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">⏰</div>
+                <div class="spec-title">Age</div>
+                <div class="spec-value">11+ Years</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section>
+        <div class="quote-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--pink), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">The OG is Back</h2>
+            <p style="font-size: 1.3rem; color: var(--text-dim); max-width: 600px; margin: 0 auto;">
+                Before the memes. Before the rugs. Before the influencer pumps. There was Sexcoin. The original adult crypto. 11 years of history. Zero ICO. Pure legend.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">SEXCOIN</div>
+        <p>The Original Adult Cryptocurrency • Est. May 28, 2013</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">
+            This site documents the historical record of Sexcoin (SXC).<br>
+            Not financial advice. DYOR.
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in timeline items on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
