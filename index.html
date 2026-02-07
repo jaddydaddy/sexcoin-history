@@ -205,11 +205,18 @@
         }
 
         .hero-logo {
-            width: 180px;
-            height: 180px;
+            width: 280px;
+            height: 280px;
             margin-bottom: 2rem;
             animation: logo-float 4s ease-in-out infinite, logo-glow 2s ease-in-out infinite alternate;
-            filter: drop-shadow(0 20px 40px rgba(255, 45, 85, 0.5));
+            filter: drop-shadow(0 20px 60px rgba(255, 45, 85, 0.6));
+        }
+
+        @media (max-width: 768px) {
+            .hero-logo {
+                width: 200px;
+                height: 200px;
+            }
         }
 
         @keyframes logo-float {
