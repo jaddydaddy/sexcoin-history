@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Catch the Sexcoin! 🪙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0a10 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .game-container {
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ff2d55, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .score-display {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff2d55;
+        }
+        
+        canvas {
+            border: 3px solid #ff2d55;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 45, 85, 0.3);
+            background: linear-gradient(180deg, #0a0a15 0%, #150a10 100%);
+            touch-action: none;
+        }
+        
+        .instructions {
+            margin-top: 1rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .start-btn {
+            margin-top: 1rem;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ff2d55, #cc1a40);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 45, 85, 0.4);
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            border: 2px solid #ff2d55;
+            text-align: center;
+            display: none;
+        }
+        
+        .game-over h2 {
+            color: #ff2d55;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .game-over p {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #ff6b9d;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            color: #ff2d55;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🪙 Catch the Sexcoin! 🪙</h1>
+        <div class="score-display">Score: <span id="score">0</span> | High Score: <span id="highScore">0</span></div>
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <p class="instructions">← → Arrow keys or touch to move</p>
+        <button class="start-btn" id="startBtn" onclick="startGame()">START GAME</button>
+        <br>
+        <a href="index.html" class="back-link">← Back to Sexcoin</a>
+    </div>
+    
+    <div class="game-over" id="gameOver">
+        <h2>GAME OVER!</h2>
+        <p>Final Score: <span id="finalScore">0</span></p>
+        <button class="start-btn" onclick="startGame()">PLAY AGAIN</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Game state
+        let score = 0;
+        let highScore = localStorage.getItem('sexcoinHighScore') || 0;
+        let gameRunning = false;
+        let coins = [];
+        let player = { x: 175, y: 550, width: 50, height: 50 };
+        let gameSpeed = 2;
+        let spawnRate = 60;
+        let frameCount = 0;
+        
+        document.getElementById('highScore').textContent = highScore;
+        
+        // Player controls
+        let keys = { left: false, right: false };
+        let touchX = null;
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') keys.left = true;
+            if (e.key === 'ArrowRight') keys.right = true;
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft') keys.left = false;
+            if (e.key === 'ArrowRight') keys.right = false;
+        });
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            touchX = e.touches[0].clientX;
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            player.x = Math.max(0, Math.min(canvas.width - player.width, x - player.width / 2));
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            if (gameRunning) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                player.x = Math.max(0, Math.min(canvas.width - player.width, x - player.width / 2));
+            }
+        });
+        
+        function drawCoin(x, y, size, type) {
+            ctx.save();
+            ctx.translate(x + size/2, y + size/2);
+            
+            if (type === 'good') {
+                // Pink coin
+                ctx.beginPath();
+                ctx.arc(0, 0, size/2, 0, Math.PI * 2);
+                ctx.fillStyle = '#ff2d55';
+                ctx.fill();
+                ctx.strokeStyle = '#ff6b9d';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                
+                // $ symbol
+                ctx.fillStyle = '#fff';
+                ctx.font = `bold ${size/2}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('$', 0, 0);
+            } else {
+                // Bad coin (scam)
+                ctx.beginPath();
+                ctx.arc(0, 0, size/2, 0, Math.PI * 2);
+                ctx.fillStyle = '#333';
+                ctx.fill();
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                ctx.fillStyle = '#ff0000';
+                ctx.font = `bold ${size/2}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('X', 0, 0);
+            }
+            
+            ctx.restore();
+        }
+        
+        function drawPlayer() {
+            // Draw basket/catcher
+            ctx.fillStyle = '#ff2d55';
+            ctx.beginPath();
+            ctx.moveTo(player.x, player.y + player.height);
+            ctx.lineTo(player.x + player.width, player.y + player.height);
+            ctx.lineTo(player.x + player.width - 10, player.y);
+            ctx.lineTo(player.x + 10, player.y);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.strokeStyle = '#ff6b9d';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+        
+        function spawnCoin() {
+            const isGood = Math.random() > 0.2; // 80% good coins
+            coins.push({
+                x: Math.random() * (canvas.width - 40),
+                y: -40,
+                size: 40,
+                speed: gameSpeed + Math.random() * 2,
+                type: isGood ? 'good' : 'bad'
+            });
+        }
+        
+        function update() {
+            if (!gameRunning) return;
+            
+            frameCount++;
+            
+            // Move player
+            if (keys.left && player.x > 0) player.x -= 8;
+            if (keys.right && player.x < canvas.width - player.width) player.x += 8;
+            
+            // Spawn coins
+            if (frameCount % spawnRate === 0) {
+                spawnCoin();
+            }
+            
+            // Update coins
+            for (let i = coins.length - 1; i >= 0; i--) {
+                coins[i].y += coins[i].speed;
+                
+                // Check collision with player
+                if (coins[i].y + coins[i].size > player.y &&
+                    coins[i].x + coins[i].size > player.x &&
+                    coins[i].x < player.x + player.width) {
+                    
+                    if (coins[i].type === 'good') {
+                        score += 10;
+                        document.getElementById('score').textContent = score;
+                    } else {
+                        // Hit bad coin - game over
+                        gameOver();
+                        return;
+                    }
+                    coins.splice(i, 1);
+                    continue;
+                }
+                
+                // Remove coins that fell off screen
+                if (coins[i].y > canvas.height) {
+                    if (coins[i].type === 'good') {
+                        // Missed good coin - game over
+                        gameOver();
+                        return;
+                    }
+                    coins.splice(i, 1);
+                }
+            }
+            
+            // Increase difficulty
+            if (score > 0 && score % 100 === 0) {
+                gameSpeed += 0.1;
+                if (spawnRate > 30) spawnRate -= 1;
+            }
+        }
+        
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = 'rgba(10, 10, 20, 0.3)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw coins
+            coins.forEach(coin => {
+                drawCoin(coin.x, coin.y, coin.size, coin.type);
+            });
+            
+            // Draw player
+            drawPlayer();
+        }
+        
+        function gameLoop() {
+            update();
+            draw();
+            if (gameRunning) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+        
+        function startGame() {
+            score = 0;
+            coins = [];
+            gameSpeed = 2;
+            spawnRate = 60;
+            frameCount = 0;
+            player.x = 175;
+            gameRunning = true;
+            
+            document.getElementById('score').textContent = score;
+            document.getElementById('gameOver').style.display = 'none';
+            document.getElementById('startBtn').style.display = 'none';
+            
+            gameLoop();
+        }
+        
+        function gameOver() {
+            gameRunning = false;
+            
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('sexcoinHighScore', highScore);
+                document.getElementById('highScore').textContent = highScore;
+            }
+            
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('gameOver').style.display = 'block';
+        }
+        
+        // Initial draw
+        draw();
+    </script>
+</body>
+</html>
