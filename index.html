@@ -208,8 +208,8 @@
             width: 350px;
             height: 350px;
             margin-bottom: 2rem;
-            animation: logo-float 4s ease-in-out infinite, logo-glow 2s ease-in-out infinite alternate;
-            filter: drop-shadow(0 25px 80px rgba(255, 45, 85, 0.7));
+            animation: logo-float 4s ease-in-out infinite;
+            filter: drop-shadow(0 20px 50px rgba(255, 45, 85, 0.5));
         }
 
         @media (max-width: 768px) {
@@ -220,13 +220,8 @@
         }
 
         @keyframes logo-float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-
-        @keyframes logo-glow {
-            0% { filter: drop-shadow(0 20px 40px rgba(255, 45, 85, 0.4)); }
-            100% { filter: drop-shadow(0 25px 60px rgba(255, 45, 85, 0.7)); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .ticker {
@@ -1121,7 +1116,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-banner-silhouette"></div>
-        <img src="sexcoin-logo.png?v=2" alt="Sexcoin Logo" class="hero-logo">
+        <img src="logo-v3.png" alt="Sexcoin Logo" class="hero-logo">
         <div class="ticker">$SXC • SCRYPT • POW</div>
         <h1>Sexcoin</h1>
         <p class="tagline">The <em>original</em> cryptocurrency for pleasure.<br>Built for desire. Made for the night.</p>
@@ -1408,7 +1403,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="sexcoin-logo.png?v=2" alt="Sexcoin" class="footer-logo">
+        <img src="logo-v3.png" alt="Sexcoin" class="footer-logo">
         <div class="logo">Sexcoin</div>
         <p>The Original Adult Cryptocurrency</p>
         <p style="color: var(--pink); margin-top: 0.5rem;">Est. May 28, 2013</p>
