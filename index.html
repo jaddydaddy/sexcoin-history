@@ -134,29 +134,25 @@
             100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2); }
         }
 
-        .hero-silhouette {
+        .hero-banner-silhouette {
             position: absolute;
-            opacity: 0.15;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background-image: url('hero-silhouette.png');
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+            background-position: center bottom;
+            opacity: 0.08;
             pointer-events: none;
             z-index: 0;
         }
 
-        .hero-silhouette.left {
-            left: 5%;
-            bottom: 10%;
-            width: 300px;
-            transform: scaleX(-1);
-        }
-
-        .hero-silhouette.right {
-            right: 5%;
-            bottom: 15%;
-            width: 250px;
-        }
-
-        @media (max-width: 1200px) {
-            .hero-silhouette {
-                display: none;
+        @media (max-width: 768px) {
+            .hero-banner-silhouette {
+                height: 120px;
+                bottom: 80px;
             }
         }
 
@@ -1039,8 +1035,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="silhouette1.png" alt="" class="hero-silhouette left">
-        <img src="silhouette3.png" alt="" class="hero-silhouette right">
+        <div class="hero-banner-silhouette"></div>
         <img src="logo.png" alt="Sexcoin Logo" class="hero-logo">
         <div class="ticker">$SXC • SCRYPT • POW</div>
         <h1>Sexcoin</h1>
