@@ -1111,6 +1111,59 @@
             color: var(--text-dim);
         }
 
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-ca {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 45, 85, 0.1);
+            border: 1px solid rgba(255, 45, 85, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-ca:hover {
+            background: rgba(255, 45, 85, 0.2);
+        }
+
+        .footer-ca span:first-child {
+            color: var(--text-dim);
+        }
+
+        .footer-ca span:nth-child(2) {
+            font-family: 'Space Mono', monospace;
+            color: var(--pink);
+        }
+
+        .footer-x {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.25rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-x:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         footer .disclaimer {
             margin-top: 2rem;
             font-size: 0.85rem;
@@ -1474,6 +1527,16 @@
         <div class="logo">Sexcoin</div>
         <p>The Original Adult Cryptocurrency</p>
         <p style="color: var(--pink); margin-top: 0.5rem;">Est. May 28, 2013</p>
+        
+        <div class="footer-links">
+            <div class="footer-ca" onclick="copyCA()">
+                <span class="ca-label">CA:</span>
+                <span id="footer-ca-text">COMING SOON</span>
+                <span>📋</span>
+            </div>
+            <a href="#" class="footer-x" id="footer-x-link">𝕏 Follow us</a>
+        </div>
+        
         <p class="disclaimer">
             This site documents the historical record of Sexcoin (SXC).<br>
             Not financial advice. DYOR. 18+ content themes.
@@ -1534,8 +1597,12 @@
             });
         }
 
-        // Set X link
+        // Set X links
         document.getElementById('x-link').href = X_URL;
+        document.getElementById('footer-x-link').href = X_URL;
+        
+        // Set footer CA text
+        document.getElementById('footer-ca-text').textContent = CONTRACT_ADDRESS;
 
         // Parallax effect on hero
         window.addEventListener('scroll', () => {
