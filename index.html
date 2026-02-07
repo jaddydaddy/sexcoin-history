@@ -519,8 +519,29 @@
 
         .timeline-item:hover {
             border-color: var(--pink);
-            box-shadow: 0 20px 60px rgba(255, 45, 85, 0.15);
+            box-shadow: 0 20px 60px rgba(255, 45, 85, 0.3), 0 0 30px rgba(255, 45, 85, 0.2);
             transform: translateY(-5px) !important;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--pink), transparent, var(--pink));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+        }
+
+        .timeline-item:hover::after {
+            opacity: 0.1;
+            animation: border-pulse 2s infinite;
+        }
+
+        @keyframes border-pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
         }
 
         .timeline-date {
@@ -677,12 +698,28 @@
         .section-silhouette.right {
             right: 2%;
             bottom: 10%;
-            width: 200px;
+            width: 280px;
+        }
+
+        .section-silhouette.left {
+            left: 2%;
+            bottom: 10%;
+            width: 280px;
+            transform: scaleX(-1);
         }
 
         .has-silhouette {
             position: relative;
             overflow: hidden;
+        }
+
+        /* Red light district neon effects */
+        .neon-glow {
+            text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink), 0 0 40px var(--pink);
+        }
+
+        .section-header h2 {
+            text-shadow: 0 0 30px rgba(255, 45, 85, 0.3);
         }
 
         @media (max-width: 900px) {
@@ -1104,11 +1141,11 @@
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-date">MAY 28, 2013</div>
-                <div class="timeline-title">🍆 The Birth of Something Beautiful</div>
+                <div class="timeline-title">🍆 She Was Born</div>
                 <div class="timeline-content">
-                    A simple announcement appears on BitcoinTalk: <em>"We are not creating a new coin but a coin for specific use - to buy/sell Adult services and products."</em>
-                    <div class="timeline-quote">"Sexcoin is made for only one purpose... to be THE coin for the adult entertainment industry."</div>
-                    Just 2 blocks premined for bounties. 500,000 SXC paid to Cryptsy for the listing. No ICO. No presale. No VC bullshit. Just vibes.
+                    A whisper on BitcoinTalk: <em>"A coin for adult services and products."</em> The industry's first taste of crypto pleasure.
+                    <div class="timeline-quote">"Sexcoin is made for only one purpose... to satisfy the adult entertainment industry."</div>
+                    No foreplay. No ICO. No VC teasing. She came ready to perform.
                     <br><br>
                     <a href="https://bitcointalk.org/index.php?topic=218158.0" target="_blank">📜 Read the original announcement →</a>
                 </div>
@@ -1119,9 +1156,9 @@
                 <div class="timeline-date">DECEMBER 9-11, 2013</div>
                 <div class="timeline-title">🚀 7,500% in 72 Hours</div>
                 <div class="timeline-content">
-                    Then it happened. In just <strong>three days</strong>, Sexcoin exploded. Price rockets 7,500%. The Cryptsy exchange buckles under the volume. Everything breaks — the website, the wallet generator, the block explorer.
-                    <div class="timeline-quote">"First ATH: $0.24. The servers couldn't handle the arousal."</div>
-                    Pure, uncut 2013 crypto chaos. And it was glorious.
+                    Then she exploded. <strong>Three days</strong> of pure ecstasy. 7,500% pump. Cryptsy couldn't handle her. Everything broke — overwhelmed by the intensity.
+                    <div class="timeline-quote">"First climax: $0.24. The servers couldn't take it."</div>
+                    Raw. Uncut. Unforgettable.
                 </div>
                 <span class="timeline-tag ath">FIRST CLIMAX</span>
             </div>
@@ -1185,11 +1222,11 @@
 
             <div class="timeline-item">
                 <div class="timeline-date">DECEMBER 2017</div>
-                <div class="timeline-title">🌋 The Bull Run: Round 2</div>
+                <div class="timeline-title">🌋 Round 2: Harder</div>
                 <div class="timeline-content">
-                    The 2017 crypto mania lifts all boats. Sexcoin catches the wave and <strong>rides it hard</strong>.
-                    <div class="timeline-quote">"$18 MILLION market cap. New ATH: $0.22. Roughly 200 active nodes. The Sexcoin Maid store launches — first SXC-only adult toy shop."</div>
-                    Trading volume explodes on Livecoin and Cryptopia. Real products. Real adoption. This was the vision coming to life.
+                    The 2017 bull run. She caught the wave and <strong>rode it harder than before</strong>.
+                    <div class="timeline-quote">"$18 MILLION. ATH: $0.22. The Sexcoin Maid store launches — adult toys, SXC only. She was selling pleasure for pleasure."</div>
+                    200 nodes throbbing. Volume exploding. The vision was climaxing.
                     <br><br>
                     <a href="https://medium.com/sexcoin/sexcoin-the-adult-blockchain-2bd1d0ea440c" target="_blank">📝 Official 2017 recap →</a>
                 </div>
@@ -1272,10 +1309,11 @@
     </section>
 
     <!-- Specs Section -->
-    <section id="specs">
+    <section id="specs" class="has-silhouette">
+        <img src="silhouette5.png" alt="" class="section-silhouette left">
         <div class="section-header">
-            <h2>The Specs</h2>
-            <p>Technical foundations from the 2013 genesis</p>
+            <h2>Her Measurements</h2>
+            <p>The technical curves from 2013</p>
         </div>
 
         <div class="specs-grid">
@@ -1351,10 +1389,11 @@
     </section>
 
     <!-- Links Section -->
-    <section id="links">
+    <section id="links" class="has-silhouette">
+        <img src="silhouette3.png" alt="" class="section-silhouette right">
         <div class="section-header">
-            <h2>The Archives</h2>
-            <p>Primary sources and receipts</p>
+            <h2>The Evidence</h2>
+            <p>Proof she's been doing this longer than anyone</p>
         </div>
 
         <div class="links-grid">
