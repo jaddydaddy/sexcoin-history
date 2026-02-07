@@ -134,35 +134,28 @@
             100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2); }
         }
 
-        .hero-bg-image {
+        .hero-silhouette {
             position: absolute;
-            width: 400px;
-            height: 600px;
-            background-size: cover;
-            background-position: center;
             opacity: 0.15;
-            filter: grayscale(50%);
             pointer-events: none;
-            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            z-index: 0;
         }
 
-        .hero-bg-image.left {
-            left: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80');
+        .hero-silhouette.left {
+            left: 5%;
+            bottom: 10%;
+            width: 300px;
+            transform: scaleX(-1);
         }
 
-        .hero-bg-image.right {
-            right: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-image: url('https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=600&q=80');
+        .hero-silhouette.right {
+            right: 5%;
+            bottom: 15%;
+            width: 250px;
         }
 
         @media (max-width: 1200px) {
-            .hero-bg-image {
+            .hero-silhouette {
                 display: none;
             }
         }
@@ -712,6 +705,22 @@
             display: block;
         }
 
+        .interlude-silhouette {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 200px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        @media (max-width: 900px) {
+            .interlude-silhouette {
+                display: none;
+            }
+        }
+
         .interlude h3 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
@@ -931,6 +940,7 @@
             text-align: center;
             padding: 8rem 2rem;
             position: relative;
+            overflow: hidden;
         }
 
         .cta-section::before {
@@ -942,6 +952,17 @@
             height: 800px;
             background: radial-gradient(circle, rgba(255, 45, 85, 0.15) 0%, transparent 60%);
             transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .cta-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 800px;
+            opacity: 0.1;
             pointer-events: none;
         }
 
@@ -1064,8 +1085,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg-image left"></div>
-        <div class="hero-bg-image right"></div>
+        <img src="silhouette1.png" alt="" class="hero-silhouette left">
+        <img src="silhouette3.png" alt="" class="hero-silhouette right">
         <img src="logo.png" alt="Sexcoin Logo" class="hero-logo">
         <div class="ticker">$SXC • SCRYPT • POW</div>
         <h1>Sexcoin</h1>
@@ -1158,6 +1179,7 @@
             </div>
 
             <div class="interlude">
+                <img src="silhouette1.png" alt="" class="interlude-silhouette">
                 <span class="interlude-icon">⏳</span>
                 <h3>"And then... silence. For months. Everyone thought it was over."</h3>
                 <p>But legends don't die. They wait.</p>
@@ -1474,6 +1496,7 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
+        <img src="silhouette2.png" alt="" class="cta-silhouette">
         <h2>The OG Awakens</h2>
         <p>Before the memes. Before the rugs. Before the influencer pumps. There was Sexcoin. 11 years of history. Zero ICO. Pure legend.</p>
         <p class="tagline-final">The original adult crypto. Back for more.</p>
