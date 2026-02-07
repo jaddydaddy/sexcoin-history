@@ -625,16 +625,52 @@
 
         .interlude-silhouette {
             position: absolute;
-            right: 10%;
             top: 50%;
             transform: translateY(-50%);
-            height: 200px;
+            height: 250px;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .interlude-silhouette:not(.left) {
+            right: 10%;
+        }
+
+        .interlude-silhouette.left {
+            left: 10%;
+        }
+
+        .quote-silhouette {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            width: 350px;
             opacity: 0.08;
             pointer-events: none;
         }
 
+        .section-silhouette {
+            position: absolute;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-silhouette.right {
+            right: 2%;
+            bottom: 10%;
+            width: 200px;
+        }
+
+        .has-silhouette {
+            position: relative;
+            overflow: hidden;
+        }
+
         @media (max-width: 900px) {
-            .interlude-silhouette {
+            .interlude-silhouette,
+            .quote-silhouette,
+            .section-silhouette {
                 display: none;
             }
         }
@@ -1176,6 +1212,7 @@
             </div>
 
             <div class="interlude">
+                <img src="silhouette5.png" alt="" class="interlude-silhouette left">
                 <span class="interlude-icon">🔥</span>
                 <h3>"And then 2024 happened. Buttcoin. Dickcoin. Body part memecoins everywhere."</h3>
                 <p>The world finally caught up to where Sexcoin was a decade ago.</p>
@@ -1210,6 +1247,7 @@
     <!-- Quote Section -->
     <section>
         <div class="quote-section">
+            <img src="silhouette4.png" alt="" class="quote-silhouette">
             <blockquote>"Sexcoin is not a new coin. There was no ICO and no initial investments of any kind. Sexcoin has grown steadily having started in 2013 during the first true Altcoin Uprising."</blockquote>
             <cite>— Sexcoin Team, 2017</cite>
         </div>
@@ -1267,7 +1305,8 @@
     </section>
 
     <!-- Legacy Section -->
-    <section id="legacy">
+    <section id="legacy" class="has-silhouette">
+        <img src="silhouette6.png" alt="" class="section-silhouette right">
         <div class="section-header">
             <h2>The Legacy</h2>
             <p>Why this matters in crypto history</p>
