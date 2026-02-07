@@ -134,6 +134,39 @@
             100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2); }
         }
 
+        .hero-bg-image {
+            position: absolute;
+            width: 400px;
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            filter: grayscale(50%);
+            pointer-events: none;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        }
+
+        .hero-bg-image.left {
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80');
+        }
+
+        .hero-bg-image.right {
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=80');
+        }
+
+        @media (max-width: 1200px) {
+            .hero-bg-image {
+                display: none;
+            }
+        }
+
         .hero::after {
             content: '';
             position: absolute;
@@ -146,12 +179,11 @@
         }
 
         .hero-logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+            width: 180px;
+            height: 180px;
             margin-bottom: 2rem;
             animation: logo-float 4s ease-in-out infinite, logo-glow 2s ease-in-out infinite alternate;
-            box-shadow: 0 20px 60px rgba(255, 45, 85, 0.4);
+            filter: drop-shadow(0 20px 40px rgba(255, 45, 85, 0.5));
         }
 
         @keyframes logo-float {
@@ -1032,7 +1064,9 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="logo.jpg" alt="Sexcoin Logo" class="hero-logo">
+        <div class="hero-bg-image left"></div>
+        <div class="hero-bg-image right"></div>
+        <img src="logo.png" alt="Sexcoin Logo" class="hero-logo">
         <div class="ticker">$SXC • SCRYPT • POW</div>
         <h1>Sexcoin</h1>
         <p class="tagline">The <em>original</em> cryptocurrency for the adult industry.<br>Before the imitators. Before the rugs. Before OnlyFans.</p>
@@ -1241,33 +1275,45 @@
         </div>
         <div class="gallery-grid">
             <div class="gallery-item large">
-                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80" alt="Neon lights aesthetic">
-                <div class="gallery-overlay">
-                    <span>Discretion</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1533628635777-112b2239b1c7?w=600&q=80" alt="Silhouette">
-                <div class="gallery-overlay">
-                    <span>Privacy</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1496196614460-48988a57fccf?w=600&q=80" alt="Moody lighting">
-                <div class="gallery-overlay">
-                    <span>Freedom</span>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=600&q=80" alt="Aesthetic">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80" alt="Seductive portrait">
                 <div class="gallery-overlay">
                     <span>Desire</span>
                 </div>
             </div>
-            <div class="gallery-item large">
-                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt="Party lights">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80" alt="Glamour">
                 <div class="gallery-overlay">
-                    <span>Liberation</span>
+                    <span>Allure</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Fashion">
+                <div class="gallery-overlay">
+                    <span>Temptation</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=80" alt="Beauty">
+                <div class="gallery-overlay">
+                    <span>Passion</span>
+                </div>
+            </div>
+            <div class="gallery-item large">
+                <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80" alt="Intimate">
+                <div class="gallery-overlay">
+                    <span>Intimacy</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80" alt="Sultry">
+                <div class="gallery-overlay">
+                    <span>Seduction</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80" alt="Gorgeous">
+                <div class="gallery-overlay">
+                    <span>Fantasy</span>
                 </div>
             </div>
         </div>
@@ -1435,7 +1481,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="logo.jpg" alt="Sexcoin" class="footer-logo">
+        <img src="logo.png" alt="Sexcoin" class="footer-logo">
         <div class="logo">Sexcoin</div>
         <p>The Original Adult Cryptocurrency</p>
         <p style="color: var(--pink); margin-top: 0.5rem;">Est. May 28, 2013</p>
